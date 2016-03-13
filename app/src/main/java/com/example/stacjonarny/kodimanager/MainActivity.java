@@ -3,7 +3,9 @@ package com.example.stacjonarny.kodimanager;
 
 
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,15 +15,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stacjonarny.kodimanager.conections.SmbListDirectory;
 import com.example.stacjonarny.kodimanager.conections.SshConnect;
@@ -30,6 +34,7 @@ import com.example.stacjonarny.kodimanager.fragments.MainFragment;
 import com.example.stacjonarny.kodimanager.fragments.SettingFragment;
 import com.jcraft.jsch.JSchException;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     private ProgressBar spinner;
 
     public SshConnect connection;
-    ArrayList<String> list_folder = new ArrayList<String>();
+    public ArrayList<String> list_folder = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity
 
        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
       /*  String[] tvshow={"breaking bad","dexter","TVD"};
         ListAdapter adapter = new ArrayAdapter<String>(this,
@@ -141,6 +148,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.dodaj_odcinek) {
             Fragment fragment = new DodajOdcinekFragment();
+           
+            //
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_conteiner, fragment)
@@ -187,21 +196,58 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void Refresh(View view) {
-        String[] tvshow={"breaking bad","dexter","TVD"};
-        final ListAdapter adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,tvshow);
-        DodajOdcinekFragment fragment = (DodajOdcinekFragment) getFragmentManager().findFragmentById(R.id.fragment_conteiner);
-        ListView listviev = (ListView)fragment.getView().findViewById(R.id.thelistviev);
-        listviev.setAdapter(adapter);
-
-    }
-
     public void ListaFolder(View view) {
 
         MainFragment fragment = (MainFragment) getFragmentManager().findFragmentById(R.id.fragment_conteiner);
         TextView maintext = (TextView)fragment.getView().findViewById(R.id.main_text);
-        new SmbListDirectory(maintext,list_folder).execute();
+        spinner = (ProgressBar) findViewById(R.id.progressBar1);
+        new SmbListDirectory(maintext,list_folder,spinner).execute();
+
+    }
+
+    public void PobierzListe(View view) {
+        spinner = (ProgressBar) findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.VISIBLE);
+        DodajOdcinekFragment fragment = (DodajOdcinekFragment) getFragmentManager().findFragmentById(R.id.fragment_conteiner);
+         ListView listviev = (ListView)fragment.getView().findViewById(R.id.thelistviev);
+        new SmbListDirectory(this,listviev,list_folder,spinner).execute();
+        listviev.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        final String selected = String.valueOf(parent.getItemAtPosition(position));
+                        //Toast.makeText(MainActivity.this, selected, Toast.LENGTH_SHORT).show();
+                        final String[] items = {"Dodaj odcinek", "Dodaj napisy", "Popraw napisy"};
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("Pick a color");
+                        builder.setItems(items, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                if (items[item].equals("Dodaj odcinek")) {
+                                    OknoDialogowe();
+                                    /*spinner.setVisibility(View.VISIBLE);
+
+                                    connection = new SshConnect(MainActivity.this, spinner);
+                                    connection.execute();*/
+                                }
+                                //Toast.makeText(getApplicationContext(),selected + items[item], Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                }
+        );
+
+    }
+    void OknoDialogowe(){
+        spinner.setVisibility(View.VISIBLE);
+
+        connection = new SshConnect(MainActivity.this, spinner);
+        connection.execute();
+    }
+    void ChooseFile() {
+
 
     }
 }

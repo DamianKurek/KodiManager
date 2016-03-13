@@ -25,6 +25,10 @@ public class SshConnect extends AsyncTask <Void,Integer,Integer>{
         this.progres = bar;
     }
 
+    public SshConnect(ProgressBar progres) {
+        this.progres = progres;
+    }
+
     @Override
     protected Integer doInBackground(Void... params) {
         try {

@@ -3,18 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.DodajOdcinekFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:longClickable="true">
 
     <!-- TODO: Update blank fragment layout -->
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="odswiez"
-        android:onClick="Refresh"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pobierz liste"
+            android:onClick="PobierzListe"
+            android:id="@+id/buttoninfragment"/>
+    </LinearLayout>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/thelistviev">
+        android:id="@+id/thelistviev"
+        android:longClickable="false">
 
     </ListView>
 

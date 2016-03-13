@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/add_new_episode"
+        android:title="Dodaj nowy odcinek"/>
+    <item android:id="@+id/add_sub"
+        android:title="Dodaj napisy"/>
+    <item android:id="@+id/rename_sub"
+        android:title="Popraw napisy"/>
+</menu>
