@@ -1,34 +1,298 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SettingFragment">
+    android:fillViewport="true"
+    tools:context=".fragments.SettingFragment"
+    >
+<LinearLayout
 
-    <!-- TODO: Update blank fragment layout -->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#c2d6df">
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="setting s fragment"
-        android:id="@+id/logi"
-        android:layout_gravity="center_horizontal|top" />
+        android:text="Ustawienia Samba"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:weightSum="1"
+       android:gravity="center_horizontal">
+       <TextView
+           android:layout_width="180dp"
+           android:layout_height="wrap_content"
+           android:text="username : "
+           android:gravity="center"/>
 
-    <Button
-        android:layout_width="wrap_content"
+       <Space
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5" />
+
+       <EditText
+           android:layout_width="150dp"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:id="@+id/setting_username_samba"/>
+   </LinearLayout>
+    <!--password-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="połącz"
-        android:id="@+id/button"
-        android:onClick="PolaczSSH"
-        android:layout_gravity="center" />
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="password : "
+            android:gravity="center"/>
 
-    <Button
-        android:layout_width="wrap_content"
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_password_samba"/>
+    </LinearLayout>
+        <!--host-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test"
-        android:id="@+id/button2"
-        android:layout_gravity="right|center_vertical"
-        android:onClick="TestujPolaczenie"/>
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center">
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="host : "
+            android:gravity="center"/>
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4" />
 
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:id="@+id/setting_host_samba"/>
+    </LinearLayout>
+    <!--path-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center"
 
+        >
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="ścieżka startowa : "
+            android:gravity="center"/>
 
-</FrameLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_srart_path_samba"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+    <!--SSH settings-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ustawienia SSH"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+    <!--username-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="username : "
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_username_ssh"/>
+    </LinearLayout>
+    <!--password-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="password : "
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_password_ssh"/>
+    </LinearLayout>
+    <!--host-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="adres ip : "
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_ip_ssh"/>
+    </LinearLayout>
+    <!--host port-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="host port : "
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6" />
+
+        <EditText
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_port_ssh"/>
+    </LinearLayout>
+    <!--torrent direcoty-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="ścieżka plików torernt"
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05" />
+
+        <EditText
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_directory_torrent_ssh"/>
+    </LinearLayout>
+    <!--dowload root direcory-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="root dowload direcory"
+            android:gravity="center"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05" />
+
+        <EditText
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/setting_root_directory_torrent_ssh"/>
+    </LinearLayout>
+
+</LinearLayout>
+    </ScrollView>

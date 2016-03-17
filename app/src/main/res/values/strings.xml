@@ -8,4 +8,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--USTAWIENIA-->
+    <string name="USSERNAME_SSH">root</string>
+    <string name="PASSWORD_SSH">openelec</string>
+    <string name="HOST_SSH">192.168.1.10</string>
+    <string name="PORT_SSH">22</string>
+    <string name="PATCH_TORRENT_FOLDER">/var/media/FreeAgent\\ Drive/torrenty/</string>
+    <string name="USSERNAME_SMB" />
+    <string name="PASSWORD_SMB" />
+    <string name="SAMBA_IP">smb://192.168.1.10/</string>
+    <string name="SAMBA_ROOT_DIRECTORY">FreeAgent Drive/SERIALE/berzace/</string>
+    <string name="PATCH_DOWNLOAD_TORRENT">/var/media/FreeAgent\\ Drive/Seriale/berzace/</string>
 </resources>

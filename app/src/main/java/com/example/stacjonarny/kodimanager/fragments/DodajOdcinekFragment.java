@@ -3,26 +3,19 @@ package com.example.stacjonarny.kodimanager.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v4.app.DialogFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.stacjonarny.kodimanager.MainActivity;
 import com.example.stacjonarny.kodimanager.R;
-import com.example.stacjonarny.kodimanager.conections.SshConnect;
 
 
 public class DodajOdcinekFragment extends Fragment {
@@ -30,6 +23,7 @@ public class DodajOdcinekFragment extends Fragment {
     ListView list;
     Button buton;
     ProgressBar spinner;
+    TextView wiadomosc;
     public DodajOdcinekFragment(){}
 
 
@@ -41,10 +35,13 @@ public class DodajOdcinekFragment extends Fragment {
         View myInflatedView = inflater.inflate(R.layout.fragment_dodaj_odcinek, container, false);
         list = (ListView) myInflatedView.findViewById(R.id.thelistviev);
         buton = (Button) myInflatedView.findViewById(R.id.buttoninfragment);
+
+
+        //wiadomosc.setText("test");
         /*spinner = (ProgressBar) myInflatedView.findViewById(R.id.progressBar1);*/
 
-        registerForContextMenu(buton);
-        registerForContextMenu(list);
+        //registerForContextMenu(buton);
+       // registerForContextMenu(list);
         return myInflatedView;
     }
       @Override
@@ -60,16 +57,27 @@ public class DodajOdcinekFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.add_new_episode:
                 Toast.makeText(getActivity(), "ad new episode: "+item.toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), FilePickerActivity.class);
+                intent.putExtra(FilePickerActivity.ARG_FILE_FILTER, Pattern.compile(".*\\.torrent"));
+                //intent.putExtra(FilePickerActivity.ARG_FILE_FILTER, Pattern.compile(".*"));
+                intent.putExtra(FilePickerActivity.ARG_START_PATH, "/storage/emulated/0/Download");
+
+                intent.putExtra(FilePickerActivity.ARG_DIRECTORIES_FILTER, false);
+                //intent.putExtra(FilePickerActivity.ARG_SHOW_HIDDEN, true);
+                startActivityForResult(intent, 1);
                 return true;
             case R.id.add_sub:
                 Toast.makeText(getActivity(), "ad new sub"+item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.rename_sub:
-                Toast.makeText(getActivity(), "rename sun", Toast.LENGTH_SHORT).show();
-                //
                 spinner=(ProgressBar)getActivity().findViewById(R.id.progressBar1);
                 spinner.setVisibility(View.VISIBLE);
-                new SshConnect(spinner).execute();
+                //new SendTorrentSsh(spinner).execute();
+                return true;
+            case R.id.rename_sub:
+                //Toast.makeText(getActivity(), item.toString(), Toast.LENGTH_SHORT).show();
+                //
+               // spinner=(ProgressBar)getActivity().findViewById(R.id.progressBar1);
+               // spinner.setVisibility(View.VISIBLE);
+
                 return true;
 
             default:
@@ -78,6 +86,22 @@ public class DodajOdcinekFragment extends Fragment {
 
         }
 
+    }*/
+  /*  @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && data !=null) {
+
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            ///if(!filePath.isEmpty()) {
+            Toast.makeText(getActivity(), filePath, Toast.LENGTH_SHORT).show();
+            File torrent = new File(filePath);
+            spinner=(ProgressBar)getActivity().findViewById(R.id.progressBar1);
+            spinner.setVisibility(View.VISIBLE);
+            new SendTorrentSsh(spinner,torrent).execute();
+            //}
+        }
     }*/
 }
 

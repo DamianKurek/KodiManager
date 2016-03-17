@@ -2,10 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DodajOdcinekFragment"
-    android:orientation="vertical"
-    android:longClickable="true"
-    >
+    tools:context=".fragments.SubFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -17,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pobierz liste seriali"
-            android:onClick="PobierzListe"
-            android:id="@+id/buttoninfragment"/>
+            android:onClick="PobierzListe2"
+            android:id="@+id/buttoninfragment2"/>
     </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/thelistviev"
+        android:id="@+id/thelistviev2"
         android:longClickable="false">
 
     </ListView>

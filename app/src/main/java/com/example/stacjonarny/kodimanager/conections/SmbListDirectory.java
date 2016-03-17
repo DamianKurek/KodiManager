@@ -24,9 +24,9 @@ public class SmbListDirectory extends AsyncTask<ArrayList<Object>,ArrayList<Obje
     MainActivity mainactivity;
     ListView listviev;
 
-    public SmbListDirectory(TextView text,ArrayList<String> lista,ProgressBar progres) {
+    public SmbListDirectory(ArrayList<String> lista,ProgressBar progres) {
         this.list_folder = new ArrayList<>(lista);
-        this.text = text;
+
         this.progres = progres;
     }
 
@@ -39,14 +39,12 @@ public class SmbListDirectory extends AsyncTask<ArrayList<Object>,ArrayList<Obje
 
     @Override
     protected ArrayList doInBackground(ArrayList... params) {
-        final String USER_NAME2 = "";
-        final String PASSWORD2 = "";
-        final String NETWORK_FOLDER2 = "smb://192.168.1.10/";
-        String user = USER_NAME2 + ":" + PASSWORD2;
+
+        String user = MainActivity.USSERNAME_SMB + ":" + MainActivity.PASSWORD_SMB;
         NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication(user);
         ArrayList<String> temp_list_folder = new ArrayList<String>();
         try {
-            String path = NETWORK_FOLDER2 + "FreeAgent Drive/SERIALE/berzace/";
+            String path = MainActivity.SAMBA_IP + MainActivity.SAMBA_ROOT_DIRECTORY;
             SmbFile sFile = new SmbFile(path, auth);
 
             SmbFile[] foldery = sFile.listFiles();

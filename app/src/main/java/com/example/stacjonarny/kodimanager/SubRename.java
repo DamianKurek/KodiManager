@@ -1,36 +1,51 @@
-package com.example.stacjonarny.kodimanager.conections;
+package com.example.stacjonarny.kodimanager;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import java.net.MalformedURLException;
+import java.lang.Object;import java.lang.Override;import java.lang.String;import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbException;
 import jcifs.smb.SmbFile;
 
-public class ConnectSMB extends AsyncTask {
-    @Override
-    protected Object doInBackground(Object[] params) {
-        final String USER_NAME2 = "";
-        final String PASSWORD2 = "";
-        //e.g. Assuming your network folder is: \my.myserver.netsharedpublicphotos
-        final String NETWORK_FOLDER2 = "smb://192.168.1.10/";
+public class SubRename extends AsyncTask {
+    public ProgressBar progres;
+    public String dir_to_rename_sub;
+    MainActivity mainactivity;
+    public String log;
 
+    public SubRename(ProgressBar progres, String dir_to_rename_sub, MainActivity mainactivity) {
+        this.progres = progres;
+        this.dir_to_rename_sub = dir_to_rename_sub;
+        this.mainactivity = mainactivity;
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+        progres.setVisibility(View.GONE);
+        mainactivity.Toasto(log);
+    }
+
+    @Override
+    protected Integer doInBackground(Object[] params) {
         ArrayList<String> list_folder = new ArrayList<String>();
-        String user = USER_NAME2 + ":" + PASSWORD2;
+        String user = MainActivity.USSERNAME_SMB + ":" + MainActivity.PASSWORD_SMB;
         NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication(user);
         try {
-            String path = NETWORK_FOLDER2 + "FreeAgent Drive/SERIALE/berzace/";
-            SmbFile sFile = new SmbFile(path, auth);
+            String path = MainActivity.SAMBA_IP + MainActivity.SAMBA_ROOT_DIRECTORY;
+            //SmbFile sFile = new SmbFile(path, auth);
             //System.out.println(sFile.getPath());
-
-            SmbFile[] foldery = sFile.listFiles();
-            //System.out.println(foldery.length);
+/*
+            SmbFile[] seriale = sFile.listFiles();
+            //System.out.println(seriale.length);
             String path2;
-            for (SmbFile folder : foldery) {
+            for (SmbFile serial_episode_folder : seriale) {
                 //podfolder
-                path2 = path + folder.getName();
+                path2 = path + serial_episode_folder.getName();
 
                 sFile = new SmbFile(path2, auth);
                 SmbFile[] podfoldery = sFile.listFiles();
@@ -38,9 +53,15 @@ public class ConnectSMB extends AsyncTask {
                     list_folder.add(folder2.getPath());
                 }
 
-            }
+            }*/
+            dir_to_rename_sub = MainActivity.SAMBA_IP+dir_to_rename_sub.replace(
+                    mainactivity.PATCH_DOWNLOAD_TORRENT,
+                    mainactivity.SAMBA_ROOT_DIRECTORY);
+            SmbFile sFile = new SmbFile(path, auth);
+            SmbFile[] podfoldery = sFile.listFiles();
+            list_folder.add(dir_to_rename_sub);
             for (String biezacy : list_folder) {
-                path2 = biezacy;
+                String path2 = biezacy;
                 sFile = new SmbFile(path2, auth);
                 SmbFile[] podfoldery11 = sFile.listFiles();
                 SmbFile docelowy = null;
@@ -68,14 +89,16 @@ public class ConnectSMB extends AsyncTask {
                     }
                 }
             }
-
+            log="ok";
+            return 1;
         } catch (MalformedURLException ex) {
-            return false;
+            log=ex.toString();
+            return 0;
         } catch (SmbException ex) {
-
-            return false;
+            log = ex.toString();
+            return 0;
         }
-        return true;
+
     }
 
 }

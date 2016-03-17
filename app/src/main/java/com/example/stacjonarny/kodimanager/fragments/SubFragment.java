@@ -13,9 +13,9 @@ import com.example.stacjonarny.kodimanager.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class SubFragment extends Fragment {
 
-    public MainFragment() {
+    public SubFragment() {
     }
 
 
@@ -23,7 +23,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-       return inflater.inflate(R.layout.fragment_main, container, false);
+       return inflater.inflate(R.layout.fragment_sub, container, false);
 
     }
 
