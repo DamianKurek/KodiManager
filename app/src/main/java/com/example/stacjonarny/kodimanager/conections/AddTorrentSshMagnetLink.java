@@ -28,16 +28,17 @@ import java.net.URL;
 import java.util.Properties;
 
 public class AddTorrentSshMagnetLink extends AsyncTask <Void,Integer,Integer>{
-
-    public MainActivity activity;
+    public String log_error;
+    public MainActivity mainactivity;
     public ProgressBar progres;
     public String downalod_dir;
     public String magnet_link;
 
-    public AddTorrentSshMagnetLink(ProgressBar progres, String download, String torrent) {
+    public AddTorrentSshMagnetLink(MainActivity activity,ProgressBar progres, String download, String torrent) {
         this.downalod_dir=download;
         this.progres = progres;
         this.magnet_link = torrent;
+        this.mainactivity = activity;
     }
 
     @Override
@@ -59,20 +60,28 @@ public class AddTorrentSshMagnetLink extends AsyncTask <Void,Integer,Integer>{
             PrintStream commander = new PrintStream(inputstream_for_the_channel, true);
             channel.setOutputStream(System.out, true);
             channel.connect();
-            commander.println("transmission-remote --download-dir " + downalod_dir + " --add " + magnet_link +" >> wynik");
+            commander.println("transmission-remote --download-dir " + "\"" + downalod_dir + "\"" + " --add " + "\"" + magnet_link.trim() + "\"" + " >> wynik");
+            //
+
             in.reset();
+            in.close();
             channel.disconnect();
             session.disconnect();
+            log_error="ok";
+            return 1;
         }
         catch (JSchException e){
+            log_error=e.toString();
             return 0;
         } catch (IOException e) {
-            e.printStackTrace();
+            log_error="ok";
+            return 1 ;
         }
-        return 1;
+
     }
     protected void onPostExecute(Integer result)
     {
+        mainactivity.Dialogo(log_error);
         if(result==1){
             progres.setVisibility(View.GONE);
         }

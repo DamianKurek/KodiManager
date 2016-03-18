@@ -28,22 +28,18 @@ import java.net.URL;
 import java.util.Properties;
 
 public class AddTorrentSshFile extends AsyncTask <Void,Integer,Integer>{
-
-    public MainActivity activity;
+    public String log_error;
+    public MainActivity mainactivity;
     public ProgressBar progres;
     public String downalod_dir;
     public String torrent_name;
 
 
-    public AddTorrentSshFile(MainActivity activity) {
-        this.activity = activity;
-        //this.progres = bar;
-    }
-
-    public AddTorrentSshFile(ProgressBar progres, String download, String torrent) {
+    public AddTorrentSshFile(MainActivity activity,ProgressBar progres, String download, String torrent) {
         this.downalod_dir=download;
         this.progres = progres;
         this.torrent_name = torrent;
+        this.mainactivity = activity;
     }
 
     @Override
@@ -65,20 +61,26 @@ public class AddTorrentSshFile extends AsyncTask <Void,Integer,Integer>{
             PrintStream commander = new PrintStream(inputstream_for_the_channel, true);
             channel.setOutputStream(System.out, true);
             channel.connect();
-            commander.println("transmission-remote --download-dir " + downalod_dir + " --add " + MainActivity.PATCH_TORRENT_FOLDER + torrent_name +" >> wynik");
-                    in.reset();
+            commander.println("transmission-remote --download-dir "  + downalod_dir + " --add " + MainActivity.PATCH_TORRENT_FOLDER + torrent_name +" >> wynik");
+            in.reset();
             channel.disconnect();
             session.disconnect();
+            log_error="ok";
+            return 1;
         }
         catch (JSchException e){
+            log_error=e.toString();
             return 0;
         } catch (IOException e) {
             e.printStackTrace();
+            log_error="ok";
+            return 1;
         }
-        return 1;
+
     }
     protected void onPostExecute(Integer result)
     {
+        mainactivity.Dialogo(log_error);
         if(result==1){
             progres.setVisibility(View.GONE);
         }

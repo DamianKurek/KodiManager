@@ -24,11 +24,13 @@ public class SendTorrentSsh extends AsyncTask<Void,Integer,Integer>{
     public String dowloadn_dir;
     public ProgressBar progres;
     public File torrent;
+    public MainActivity mainactivity;
 
-    public SendTorrentSsh(ProgressBar progres,File f,String patch) {
+    public SendTorrentSsh(MainActivity activity,ProgressBar progres,File f,String patch) {
         this.progres = progres;
         this.torrent = f;
         this.dowloadn_dir=patch;
+        this.mainactivity = activity;
     }
     @Override
     protected Integer doInBackground(Void... params) {
@@ -64,7 +66,7 @@ public class SendTorrentSsh extends AsyncTask<Void,Integer,Integer>{
     protected void onPostExecute(Integer result)
     {
         if(result==1){
-            new AddTorrentSshFile(progres,dowloadn_dir,torrent.getName()).execute();
+            new AddTorrentSshFile(mainactivity,progres,dowloadn_dir,torrent.getName()).execute();
         }
     }
 }

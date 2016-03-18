@@ -37,23 +37,6 @@ public class SubRename extends AsyncTask {
         NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication(user);
         try {
             String path = MainActivity.SAMBA_IP + MainActivity.SAMBA_ROOT_DIRECTORY;
-            //SmbFile sFile = new SmbFile(path, auth);
-            //System.out.println(sFile.getPath());
-/*
-            SmbFile[] seriale = sFile.listFiles();
-            //System.out.println(seriale.length);
-            String path2;
-            for (SmbFile serial_episode_folder : seriale) {
-                //podfolder
-                path2 = path + serial_episode_folder.getName();
-
-                sFile = new SmbFile(path2, auth);
-                SmbFile[] podfoldery = sFile.listFiles();
-                for (SmbFile folder2 : podfoldery) {
-                    list_folder.add(folder2.getPath());
-                }
-
-            }*/
             dir_to_rename_sub = MainActivity.SAMBA_IP+dir_to_rename_sub.replace(
                     mainactivity.PATCH_DOWNLOAD_TORRENT,
                     mainactivity.SAMBA_ROOT_DIRECTORY);

@@ -350,7 +350,8 @@ public class MainActivity extends AppCompatActivity
                                             String dowload_patch;
                                             show_dir = selected;
                                             dowload_patch = PATCH_DOWNLOAD_TORRENT + show_dir;
-                                            new AddTorrentSshMagnetLink(spinner, dowload_patch, magnet_link_torrent).execute();
+
+                                            new AddTorrentSshMagnetLink(MainActivity.this,spinner, dowload_patch, magnet_link_torrent).execute();
                                         }
                                     });
 
@@ -403,7 +404,7 @@ public class MainActivity extends AppCompatActivity
             spinner.setVisibility(View.VISIBLE);
             String dowload_patch;
             dowload_patch=PATCH_DOWNLOAD_TORRENT + show_dir;
-            new SendTorrentSsh(spinner,torrent,dowload_patch).execute();
+            new SendTorrentSsh(MainActivity.this,spinner,torrent,dowload_patch).execute();
             //}
         }
         //napisy
