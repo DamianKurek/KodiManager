@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <group android:checkableBehavior="single"
+        >
         <item
             android:id="@+id/menu_glowne"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Napisy" />
+            android:title="Zarządzanie napisami"
+            />
         <item
             android:id="@+id/dodaj_odcinek"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Odcinki" />
 
+            android:title="Zarządzanie Serialami" />
+        <item
+            android:id="@+id/dodaj_film"
+            android:title="Dodadowanie filmu"/>
         <item
             android:id="@+id/ustawienia"
-            android:icon="@drawable/ic_menu_manage"
+
             android:title="Ustawienia" />
 
     </group>

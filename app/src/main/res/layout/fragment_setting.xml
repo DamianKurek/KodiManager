@@ -244,6 +244,22 @@
             android:id="@+id/setting_port_ssh"/>
     </LinearLayout>
     <!--torrent direcoty-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+    <!--SSH settings-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ustawienia katalogów"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -270,6 +286,31 @@
     </LinearLayout>
     <!--dowload root direcory-->
     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="root dowload direcory[TV]"
+        android:gravity="center"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.01" />
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/setting_root_directory_torrent_ssh"/>
+</LinearLayout>
+    //dowload film
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -277,22 +318,42 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="142dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="root dowload direcory"
+            android:text="root dowload direcory[FILM]"
             android:gravity="center"/>
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.05" />
+            android:layout_weight="0.01" />
 
         <EditText
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/setting_root_directory_torrent_ssh"/>
+            android:id="@+id/setting_root_directory_film_torrent_ssh"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/setting_save"
+        android:background="#c2d6df"
+        android:onClick="DialogOKTEST"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:src="@drawable/setting_restore"
+            android:background="#c2d6df"
+            android:onClick="DialogOKTEST"/>
+    </LinearLayout>
 </LinearLayout>
     </ScrollView>

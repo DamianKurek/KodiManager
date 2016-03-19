@@ -80,9 +80,10 @@ public class AddTorrentSshFile extends AsyncTask <Void,Integer,Integer>{
     }
     protected void onPostExecute(Integer result)
     {
-        mainactivity.Dialogo(log_error);
+
         if(result==1){
             progres.setVisibility(View.GONE);
+            mainactivity.ToastOK();
         }
 
     }

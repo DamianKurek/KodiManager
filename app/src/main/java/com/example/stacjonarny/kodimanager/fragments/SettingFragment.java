@@ -1,15 +1,12 @@
 package com.example.stacjonarny.kodimanager.fragments;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.stacjonarny.kodimanager.MainActivity;
 import com.example.stacjonarny.kodimanager.R;
@@ -58,7 +55,12 @@ public class SettingFragment extends Fragment {
         x.setText(MainActivity.PATCH_TORRENT_FOLDER);
 
         x = (EditText)myInflatedView.findViewById(R.id.setting_root_directory_torrent_ssh);
-        x.setText(MainActivity.PATCH_DOWNLOAD_TORRENT);
+        x.setText(MainActivity.PATCH_DOWNLOAD_TORRENT_SERIAL);
+
+        x = (EditText)myInflatedView.findViewById(R.id.setting_root_directory_film_torrent_ssh);
+        x.setText(MainActivity.PATCH_DOWNLOAD_TORRENT_FILM);
+
+
 
         return myInflatedView;
     }

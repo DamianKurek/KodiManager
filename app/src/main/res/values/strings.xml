@@ -18,5 +18,6 @@
     <string name="PASSWORD_SMB" />
     <string name="SAMBA_IP">smb://192.168.1.10/</string>
     <string name="SAMBA_ROOT_DIRECTORY">FreeAgent Drive/SERIALE/berzace/</string>
-    <string name="PATCH_DOWNLOAD_TORRENT">/var/media/FreeAgent\\ Drive/Seriale/berzace/</string>
+    <string name="PATCH_DOWNLOAD_TORRENT_SERIAL">/var/media/FreeAgent\\ Drive/Seriale/berzace/</string>
+    <string name="PATCH_DOWNLOAD_TORRENT_FILM">/var/media/FreeAgent\\ Drive/Filmy</string>
 </resources>

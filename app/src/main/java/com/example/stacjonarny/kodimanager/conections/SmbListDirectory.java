@@ -9,9 +9,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.stacjonarny.kodimanager.MainActivity;
+import com.example.stacjonarny.kodimanager.MyListAdapter;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbException;
@@ -66,9 +68,16 @@ public class SmbListDirectory extends AsyncTask<ArrayList<Object>,ArrayList<Obje
     protected void onPostExecute(ArrayList result)
         {
             list_folder = new ArrayList(result);
+            ArrayList list_2 = new ArrayList(result);
             if(!list_folder.isEmpty()) {
                 progres.setVisibility(View.GONE);
             }
+            Collections.sort(list_folder);
+            /*MyListAdapter adapter = new MyListAdapter(
+                    MainActivity.getCo,
+                    list_folder,
+                    list_2
+            );*/
             listviev.setAdapter(new ArrayAdapter<String>(mainactivity,
                     android.R.layout.simple_expandable_list_item_1, list_folder));
 

@@ -38,7 +38,7 @@ public class SubRename extends AsyncTask {
         try {
             String path = MainActivity.SAMBA_IP + MainActivity.SAMBA_ROOT_DIRECTORY;
             dir_to_rename_sub = MainActivity.SAMBA_IP+dir_to_rename_sub.replace(
-                    mainactivity.PATCH_DOWNLOAD_TORRENT,
+                    mainactivity.PATCH_DOWNLOAD_TORRENT_SERIAL,
                     mainactivity.SAMBA_ROOT_DIRECTORY);
             SmbFile sFile = new SmbFile(path, auth);
             SmbFile[] podfoldery = sFile.listFiles();
