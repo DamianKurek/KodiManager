@@ -66,7 +66,9 @@ public class SendTorrentSsh extends AsyncTask<Void,Integer,Integer>{
     protected void onPostExecute(Integer result)
     {
         if(result==1){
-            new AddTorrentSshFile(mainactivity,progres,dowloadn_dir,torrent.getName()).execute();
+            String torrent_name = torrent.getName();
+            torrent.delete();
+            new AddTorrentSshFile(mainactivity,progres,dowloadn_dir,torrent_name).execute();
         }
     }
 }

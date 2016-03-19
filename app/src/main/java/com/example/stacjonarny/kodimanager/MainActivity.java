@@ -253,19 +253,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void PolaczSSH(View view) throws JSchException {
-        SettingFragment fragment = (SettingFragment) getFragmentManager().findFragmentById(R.id.fragment_conteiner);
-
-        //spinner = (ProgressBar)fragment.getView().findViewById(R.id.progressBar1);
-        spinner = (ProgressBar) findViewById(R.id.progressBar1);
-
-        spinner.setVisibility(View.VISIBLE);
-
-        // c//onnection = new AddTorrentSshFile(this,spinner);
-        //c/onnection.execute();
-
-
-    }
 
     public void ListaFolder(View view) {
 
@@ -423,7 +410,7 @@ public class MainActivity extends AppCompatActivity
 
     void ChooseSub() {
         Intent intent = new Intent(MainActivity.this, FilePickerActivity.class);
-        intent.putExtra(FilePickerActivity.ARG_FILE_FILTER, Pattern.compile(".*\\.*"));
+        intent.putExtra(FilePickerActivity.ARG_FILE_FILTER, Pattern.compile(".*\\.zip"));
         //intent.putExtra(FilePickerActivity.ARG_FILE_FILTER, Pattern.compile(".*"));
         intent.putExtra(FilePickerActivity.ARG_START_PATH, "/storage/emulated/0/Download");
         intent.putExtra(FilePickerActivity.ARG_DIRECTORIES_FILTER, false);

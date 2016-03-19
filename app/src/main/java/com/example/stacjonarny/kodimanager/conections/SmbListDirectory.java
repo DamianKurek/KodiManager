@@ -26,6 +26,7 @@ public class SmbListDirectory extends AsyncTask<ArrayList<Object>,ArrayList<Obje
     MainActivity mainactivity;
     ListView listviev;
 
+
     public SmbListDirectory(ArrayList<String> lista,ProgressBar progres) {
         this.list_folder = new ArrayList<>(lista);
 
@@ -73,14 +74,12 @@ public class SmbListDirectory extends AsyncTask<ArrayList<Object>,ArrayList<Obje
                 progres.setVisibility(View.GONE);
             }
             Collections.sort(list_folder);
-            /*MyListAdapter adapter = new MyListAdapter(
-                    MainActivity.getCo,
+            MyListAdapter adapter = new MyListAdapter(
+                    mainactivity,
                     list_folder,
                     list_2
-            );*/
-            listviev.setAdapter(new ArrayAdapter<String>(mainactivity,
-                    android.R.layout.simple_expandable_list_item_1, list_folder));
-
+            );
+            listviev.setAdapter(adapter);
         }
     }
 
